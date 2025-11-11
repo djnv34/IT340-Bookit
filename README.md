@@ -14,7 +14,7 @@ BookIt is a website that allows users to easily schedule appointments with hairs
 
 ### *📌Image or Drawing of a Login Page* (Can be hand-drawn, digitally created, or AI-generated.)
 
-![](images/bookitLoginPage.png)
+![](images/LoginPage.png)
 
 
 ## *2. Deliverables:*
