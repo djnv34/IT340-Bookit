@@ -1,4 +1,167 @@
-/* Full-page layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #fff;
+    color: #0b2540;
+}
+
+/* NAVBAR */
+
+.navbar {
+    background: #0b2540;
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    background: red;
+    color: white;
+    padding: 10px 14px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-left input {
+    padding: 10px;
+    border-radius: 40px;
+    border: none;
+    width: 160px;
+}
+
+.nav-right {
+    display: flex;
+    gap: 20px;
+    color: white;
+    font-size: 18px;
+}
+
+/* TOP NAV LINKS */
+
+.top-nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    background: white;
+    padding: 18px 0;
+    font-size: 17px;
+}
+
+.top-nav-links a {
+    text-decoration: none;
+    color: #0b2540;
+}
+
+/* GRID SECTION */
+
+.section-title {
+    margin: 30px 40px;
+}
+
+.barber-grid {
+    display: flex;
+    gap: 20px;
+    padding: 0 40px;
+}
+
+.shop img {
+    width: 200px;
+    border-radius: 6px;
+}
+
+.shop-title {
+    font-weight: bold;
+    margin: 6px 0 2px;
+}
+
+.shop-location {
+    color: gray;
+    font-size: 14px;
+}
+
+/* BARBER PROFILE */
+
+.barber-profile {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+}
+
+.barber-img {
+    width: 450px;
+    border-radius: 6px;
+}
+
+.barber-info h3 {
+    margin: 0;
+}
+
+.service-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 14px 0;
+}
+
+.service-row button {
+    background: #0b2540;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+
+.footer {
+    background: #0b2540;
+    color: white;
+    padding: 30px 40px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+}
+
+.footer-logo {
+    background: red;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.footer-links {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.footer-copy {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+/*Old LayOut Below*/
+/* Full-page layout 
 body, html {
   margin: 0;
   padding: 0;
@@ -6,7 +169,7 @@ body, html {
   background: #ffffff;
 }
 
-/* Top banner */
+/* Top banner 
 .header {
   width: 100%;
   background: #032E46;
@@ -19,21 +182,21 @@ body, html {
   height: 100px;
 }
 
-/* Main container */
+/* Main container
 .login-container {
   max-width: 400px;
   margin: 40px auto;
   text-align: center;
 }
 
-/* Log in text */
+/* Log in text 
 .login-container h1 {
   font-size: 38px;
   margin-bottom: 40px;
   font-weight: 700;
 }
 
-/* Input boxes */
+/* Input boxes
 .input-box {
   width: 100%;
   padding: 12px;
@@ -48,7 +211,7 @@ body, html {
   border-color: #032E46;
 }
 
-/* Forgot password link */
+/* Forgot password link 
 .forgot-link {
   display: block;
   text-align: left;
@@ -58,7 +221,7 @@ body, html {
   cursor: pointer;
 }
 
-/* Login button */
+/* Login button 
 .login-btn {
   width: 100%;
   padding: 15px;
@@ -74,3 +237,4 @@ body, html {
 .login-btn:hover {
   background: #053a57;
 }
+*/
