@@ -1,0 +1,83 @@
+/*Old LayOut Below*/
+Full-page layout 
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: #ffffff;
+}
+
+/* Top banner */ 
+.header {
+  width: 100%;
+  background: #032E46;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.header img {
+  height: 100px;
+}
+
+/* Main container */ 
+.login-container {
+  max-width: 400px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+/* Log in text */ 
+.login-container h1 {
+  font-size: 38px;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+/* Input boxes */ 
+.input-box {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 2px solid #555;
+  border-radius: 4px;
+  outline: none;
+}
+
+.input-box:focus {
+  border-color: #032E46;
+}
+
+/* Forgot password link */  
+.forgot-link {
+  display: block;
+  text-align: left;
+  color: #0C4EA0;
+  font-size: 14px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+/* Login button */ 
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 20px;
+  background: #032E46;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.login-btn:hover {
+  background: #053a57;
+}
+
+app-root {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
