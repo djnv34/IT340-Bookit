@@ -1,0 +1,25 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Angular build
+dist/
+build/
+.out/
+
+# Backend build
+mean-stack-backend/node_modules/
+mean-stack-frontend/node_modules/
+
+# Environment
+.env
+
+# OS / Editor
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+
