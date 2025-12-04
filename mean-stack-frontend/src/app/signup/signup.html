@@ -1,57 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
-  <!-- Link to the external CSS file -->
-  <link rel="stylesheet" href="signup.css">
-</head>
+<!-- Header -->
+<header class="top-header">
+  <img src="logo.png" alt="BookIt Logo" class="header-logo">
+</header>
 
-<body>
+<!-- Main Sign Up Section -->
+<section class="signup-section">
 
-  <!-- Header -->
-  <header class="top-header">
-    <!-- Replace this with your logo file -->
-    <img src="logo.png" alt="BookIt Logo" class="header-logo">
-  </header>
+  <h1 class="signup-title">Sign Up</h1>
 
-  <!-- Main Sign Up Section -->
-  <section class="signup-section">
+  <!-- Angular Signup Form -->
+  <form class="signup-form" (ngSubmit)="signup()">
 
-    <h1 class="signup-title">Sign Up</h1>
+    <!-- First / Last Name -->
+    <div class="row">
+      <input type="text" placeholder="First Name" [(ngModel)]="firstName" name="firstName">
+      <input type="text" placeholder="Last Name" [(ngModel)]="lastName" name="lastName">
+    </div>
 
-    <!-- Form -->
-    <form class="signup-form">
+    <!-- Email / Phone -->
+    <div class="row">
+      <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required>
+      <input type="text" placeholder="Phone Number" [(ngModel)]="phone" name="phone">
+    </div>
 
-      <div class="row">
-        <input type="text" placeholder="First Name">
-        <input type="text" placeholder="Last Name">
-      </div>
+    <!-- Password -->
+    <div class="row">
+      <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+    </div>
 
-      <div class="row">
-        <input type="email" placeholder="Email">
-        <input type="text" placeholder="Phone Number">
-      </div>
+    <!-- User Type -->
+    <div class="checkbox-group">
+      <label>
+        <input type="radio" name="userType" [(ngModel)]="userType" value="client">
+        Client
+      </label>
+      <label>
+        <input type="radio" name="userType" [(ngModel)]="userType" value="serviceProvider">
+        Service Provider
+      </label>
+    </div>
 
-      <div class="row">
-        <input type="password" placeholder="Password">
-      </div>
+    <button type="submit" class="signup-btn">Sign up</button>
 
-      <!-- Client or Service Provider radio buttons -->
-      <div class="checkbox-group">
-        <label>
-          <input type="radio" name="userType" value="client"> Client
-        </label>
-        <label>
-          <input type="radio" name="userType" value="serviceProvider"> Service Provider
-        </label>
-      </div>
+    <p>{{ message }}</p>
 
-      <button type="submit" class="signup-btn">Sign up</button>
-    </form>
+    <a routerLink="/login">Already have an account? Log in</a>
 
-  </section>
+  </form>
 
-</body>
-</html>
+</section>
+

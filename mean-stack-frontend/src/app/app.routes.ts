@@ -1,12 +1,22 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },   // <-- default page now
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent }
+  {
+    path: '',
+    loadComponent: () =>
+      import('./home/home.component').then(m => m.HomeComponent)
+  },
+
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./login/login.component').then(m => m.LoginComponent)
+  },
+
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./signup/signup.component').then(m => m.SignupComponent)
+  }
 ];
 

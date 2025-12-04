@@ -12,7 +12,8 @@ import {
   withEventReplay
 } from '@angular/platform-browser';
 
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './auth-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,9 +21,9 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-
-    // ⭐ REQUIRED FOR Angular to talk to your Express backend
-    provideHttpClient()
+    provideHttpClient(
+      withInterceptors([authInterceptor])
+    )
   ]
 };
 

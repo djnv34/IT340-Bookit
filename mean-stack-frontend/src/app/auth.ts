@@ -4,11 +4,13 @@ import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root', // standalone DI
+  providedIn: 'root',
 })
 export class AuthService {
 
   private apiUrl = 'http://localhost:3000/api/auth';
+
+  currentUser: any = null;
 
   constructor(private http: HttpClient) {}
 
@@ -26,6 +28,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    this.currentUser = null;
   }
 
   getToken() {
@@ -37,7 +40,11 @@ export class AuthService {
   }
 
   me(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/me`);
+    return this.http.get(`${this.apiUrl}/me`).pipe(
+      tap((res: any) => {
+        this.currentUser = res.user;
+      })
+    );
   }
 }
 
