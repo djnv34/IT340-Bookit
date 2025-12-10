@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Cart</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+
+<body>
+    <!-- TOP NAV BAR -->
+    <div class="topbar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+
+        <div class="navbar">
+            <a href="/profile">Profile</a>
+            <a href="/calender">Calendar</a>
+            <a href="/manage">Manage</a>
+        </div>
+
+        <div class="user-icon">
+            <span>Jose</span>
+            <img src="user.png" width="25">
+        </div>
+    </div>
+
+    <!-- MAIN AREA WITH ONLY CART (NO SIDEBAR) -->
+    <div class="main-container">
+        <div class="left-section">
+            <h1>Cart</h1>
+
+            <!-- SERVICE CART TABLE -->
+            <table class="cart-table">
+                <tr>
+                    <th>Service</th>
+                    <th>Duration</th>
+		    <th>Scheduled Date</th>
+                    <th>Scheduled Time</th>
+                    <th></th>
+                </tr>
+
+                <tr>
+                    <td>Full Haircut</td>
+                    <td>45 minutes</td>
+		    <td>12/10/25</td>
+                    <td>1:15 PM</td>
+                    <td><button class="btn-remove">Remove</button></td>
+                </tr>
+
+                <tr>
+                    <td>Haircut + Beard</td>
+                    <td>1 hour</td>
+		    <td>12/24/25</td>
+                    <td>2:30 PM</td>
+                    <td><button class="btn-remove">Remove</button></td>
+                </tr>
+
+                <tr>
+                    <td>Beard Trim</td>
+                    <td>30 minutes</td>
+		    <td>1/2/25</td>
+                    <td>3:45 PM</td>
+                    <td><button class="btn-remove">Remove</button></td>
+                </tr>
+            </table>
+
+            <br>
+            <button class="btn-checkout">Checkout</button>
+        </div>
+    </div>
+</body>
+</html>

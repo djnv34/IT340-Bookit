@@ -23,7 +23,24 @@ export const routes: Routes = [
     path: 'calender',
     loadComponent: () =>
       import('./calender/calender.component').then(m => m.CalenderComponent)
+  },
+
+  {
+    path: 'cart',
+    loadComponent: () =>
+      import('./cart/cart.component').then(m => m.CartComponent)
+  },
+
+  {
+    path: 'manage',
+    loadComponent: () =>
+      import('./manage/manage.component').then(m => m.ManageComponent)
+  },
+
+
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./profile/profile.component').then(m => m.ProfileComponent)
   }
-
 ];
-

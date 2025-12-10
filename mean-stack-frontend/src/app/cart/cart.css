@@ -1,0 +1,150 @@
+/* GENERAL PAGE STYLE */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f3f3;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: white;
+    border-bottom: 1px solid #ccc;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 55px;
+}
+
+.navbar a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* LAYOUT WRAPPER */
+.main-container {
+    display: flex;
+    background: #072840; /* blue background */
+    color: white;        /* default text color for main page */
+    min-height: 600px;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+/* LEFT CONTENT AREA */
+.left-section {
+    flex: 3;
+    padding: 20px;
+    width: 80%;
+}
+
+.left-section h1 {
+    color: #e65151;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Appointment card style */
+.appt-item {
+    background-color: white;   /* white background for each appointment */
+    color: black;              /* text color inside appointment */
+    padding: 20px;
+    border-radius: 10px;       /* rounded corners */
+    margin-bottom: 20px;       /* spacing between appointments */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1); /* subtle shadow */
+}
+
+/* RIGHT SIDEBAR */
+.right-section {
+    flex: 1;
+    border-left: 2px solid white;
+    padding: 30px;
+}
+
+.right-section h3 {
+    margin-top: 10px;
+}
+
+.task-list {
+    margin-top: 20px;
+}
+
+.task-item {
+    margin-bottom: 12px;
+}
+
+/* BUTTONS */
+button {
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-reschedule {
+    background: #072840;
+    color: white;
+}
+
+.btn-cancel {
+    background: red;
+    color: white;
+}
+
+/* CART buttons */
+.btn-remove {
+    background: red;
+    color: white;
+}
+
+.btn-checkout {
+    background: white;
+    color: #072840;
+    display: block;
+    margin: 20px auto;
+}
+
+/* TABLE */
+.calendar-table, .cart-table, .appt-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    color: black;
+}
+
+.calendar-table th, .calendar-table td,
+.cart-table th, .cart-table td,
+.appt-table th, .appt-table td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Add task link */
+.add-task {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.add-task span {
+    margin-left: 10px;
+    font-weight: bold;
+}
