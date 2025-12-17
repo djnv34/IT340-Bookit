@@ -160,6 +160,55 @@ body {
     text-align: center;
     font-size: 14px;
 }
+
+/* Auth bar container */
+.auth-bar {
+  width: 100%;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+/* Align content to the right */
+.auth-content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+/* Text styling */
+.auth-text {
+  color: #333;
+}
+
+/* Login link */
+.login-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+/* Logout button */
+.logout-btn {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.logout-btn:hover {
+  background-color: #eee;
+}
+
 /*Old LayOut Below*/
 /* Full-page layout 
 body, html {
@@ -238,3 +287,6 @@ body, html {
   background: #053a57;
 }
 */
+
+
+

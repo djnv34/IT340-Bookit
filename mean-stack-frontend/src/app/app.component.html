@@ -1,20 +1,17 @@
-<div style="margin: 20px;">
-  <span *ngIf="auth.currentUser; else guest">
-    Logged in as: <strong>{{ auth.currentUser.id }}</strong>
-  </span>
+<header class="auth-bar">
+  <div class="auth-content">
+    <ng-container *ngIf="auth.currentUser; else loggedOut">
+      Logged in as {{ auth.currentUser.email }}
+      <button (click)="logout()">Logout</button>
+    </ng-container>
 
-  <ng-template #guest>
-    Logged in as: <strong>Guest</strong>
-  </ng-template>
-
-  <button
-    *ngIf="auth.currentUser"
-    (click)="logout()"
-    style="margin-left: 20px;"
-  >
-    Logout
-  </button>
-</div>
+    <ng-template #loggedOut>
+      Not logged in
+      <a routerLink="/login">Log in</a>
+      <a routerLink="/signup">Create an account</a>
+    </ng-template>
+  </div>
+</header>
 
 <router-outlet></router-outlet>
 

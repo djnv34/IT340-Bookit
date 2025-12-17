@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
+import { RouterOutlet, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './auth';
 
@@ -8,7 +8,8 @@ import { AuthService } from './auth';
   standalone: true,
   imports: [
     RouterOutlet,
-    CommonModule   // ⭐ Needed for *ngIf
+    RouterLink,     // ✅ ADD THIS
+    CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.css']
@@ -16,10 +17,7 @@ import { AuthService } from './auth';
 export class App {
   title = signal('mean-stack-frontend');
 
-  constructor(
-    public auth: AuthService,   // ⭐ make public so the template can see it
-    private router: Router
-  ) {}
+  constructor(public auth: AuthService, private router: Router) {}
 
   logout() {
     this.auth.logout();

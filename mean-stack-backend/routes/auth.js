@@ -36,8 +36,8 @@ router.post("/login", async (req, res) => {
   res.json({ token });
 });
 
-// CHECK SESSION
-router.get("/me", (req, res) => {
+// CHECK SESSION / ME
+router.get("/me", async (req, res) => {
   const header = req.headers.authorization;
   if (!header) return res.status(401).json({ message: "No token" });
 
@@ -45,8 +45,12 @@ router.get("/me", (req, res) => {
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    res.json({ user: decoded });
-  } catch {
+
+    // 🔥 Fetch full user from MongoDB
+    const user = await User.findById(decoded.id).select("email");
+
+    res.json({ user });
+  } catch (err) {
     res.status(401).json({ message: "Invalid token" });
   }
 });
