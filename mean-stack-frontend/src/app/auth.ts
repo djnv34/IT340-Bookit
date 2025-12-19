@@ -1,19 +1,27 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
   private apiUrl = 'http://localhost:3000/api/auth';
+  private isBrowser: boolean;
 
   currentUser: any = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
+  // ------------------------
+  // SIGNUP
+  // ------------------------
   signup(
     email: string,
     password: string,
@@ -22,45 +30,78 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/signup`, {
       email,
       password,
-      role
+      role,
     });
   }
 
+  // ------------------------
+  // LOGIN
+  // ------------------------
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
-        localStorage.setItem('token', res.token);
+        // 🔑 Handle ANY backend token naming
+        const token =
+          res.token ||
+          res.accessToken ||
+          res.jwt ||
+          res.data?.token;
+
+        if (!token) {
+          console.error('Login response:', res);
+          throw new Error('No token returned from backend');
+        }
+
+        if (this.isBrowser) {
+          localStorage.setItem('token', token);
+        }
       })
     );
   }
 
+  // ------------------------
+  // LOGOUT
+  // ------------------------
   logout() {
-    localStorage.removeItem('token');
+    if (this.isBrowser) {
+      localStorage.removeItem('token');
+    }
     this.currentUser = null;
   }
 
-  getToken() {
+  // ------------------------
+  // TOKEN ACCESS
+  // ------------------------
+  getToken(): string | null {
+    if (!this.isBrowser) return null;
     return localStorage.getItem('token');
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return !!this.getToken();
   }
 
+  // ------------------------
+  // GET CURRENT USER
+  // ------------------------
   me(): Observable<any> {
     return this.http.get(`${this.apiUrl}/me`).pipe(
       tap((res: any) => {
-        this.currentUser = res.user;
+        // backend usually returns { user: {...} }
+        this.currentUser = res.user ?? res;
       })
     );
   }
 
-  // 🔥 THIS FIXES "LOGGED OUT ON PAGE CHANGE"
+  // ------------------------
+  // INIT AUTH (on refresh)
+  // ------------------------
   initAuth() {
     const token = this.getToken();
+
     if (token) {
       this.me().subscribe({
-        error: () => this.logout()
+        error: () => this.logout(),
       });
     }
   }
