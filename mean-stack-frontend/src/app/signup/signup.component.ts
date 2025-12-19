@@ -19,21 +19,28 @@ export class SignupComponent {
   email = '';
   phone = '';
   password = '';
-  userType = 'client';
+  userType: 'client' | 'provider' = 'client';
 
   message = '';
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   signup() {
-    // For now, send only email + password to backend
-    this.auth.signup(this.email, this.password).subscribe({
+    // DEBUG: confirm role is coming from the form
+    console.log('SIGNUP ROLE:', this.userType);
+
+    this.auth.signup(this.email, this.password, this.userType).subscribe({
       next: () => {
-        this.message = "Account created! Redirecting to login...";
-        setTimeout(() => this.router.navigate(['/login']), 1000);
+        this.message = 'Account created! Redirecting to login...';
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 1000);
       },
       error: (err) => {
-        this.message = err.error?.message || "Signup failed";
+        this.message = err?.error?.message || 'Signup failed';
       }
     });
   }

@@ -25,16 +25,4 @@ export class CalenderComponent {
 
   constructor(private auth: AuthService, private router: Router) {}
 
-  calender() {
-    // For now, send only email + password to backend
-    this.auth.signup(this.email, this.password).subscribe({
-      next: () => {
-        this.message = "Account created! Redirecting to login...";
-        setTimeout(() => this.router.navigate(['/Calender']), 1000);
-      },
-      error: (err) => {
-        this.message = err.error?.message || "Calender failed";
-      }
-    });
-  }
 }

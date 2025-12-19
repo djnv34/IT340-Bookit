@@ -22,25 +22,30 @@ export class LoginComponent {
   ) {}
 
   login() {
-    this.auth.login(this.email, this.password).subscribe({
-      next: () => {
-        this.message = "Login successful!";
-        console.log("TOKEN:", this.auth.getToken());
+  this.auth.login(this.email, this.password).subscribe({
+    next: () => {
+      this.message = "Login successful!";
 
-        // Load current user from backend
-        this.auth.me().subscribe({
-          next: (res) => {
-            console.log("ME endpoint response:", res);
-            // Redirect to homepage after ME loads
-            this.router.navigate(['/']);   // ← GO HOME
-          },
-          error: (err) => console.error("Error calling /me:", err)
-        });
-      },
-      error: () => {
-        this.message = "Invalid credentials";
-      }
-    });
-  }
+      // Load current user
+      this.auth.me().subscribe({
+        next: () => {
+          const role = this.auth.currentUser.role;
+
+          // 🔀 ROLE-BASED REDIRECT
+          if (role === 'provider') {
+            this.router.navigate(['/manage']); // or /manage
+          } else {
+            this.router.navigate(['/']); // client home
+          }
+        },
+        error: (err) => console.error("Error calling /me:", err)
+      });
+    },
+    error: () => {
+      this.message = "Invalid credentials";
+    }
+  });
+}
+
 }
 

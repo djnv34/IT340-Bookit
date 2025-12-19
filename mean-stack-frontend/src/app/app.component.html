@@ -1,7 +1,7 @@
 <header class="auth-bar">
   <div class="auth-content">
     <ng-container *ngIf="auth.currentUser; else loggedOut">
-      Logged in as {{ auth.currentUser.email }}
+	    Logged in as {{ auth.currentUser.email }} ({{ auth.currentUser.role }})
       <button (click)="logout()">Logout</button>
     </ng-container>
 

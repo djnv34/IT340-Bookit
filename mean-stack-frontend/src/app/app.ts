@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { RouterOutlet, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './auth';
@@ -8,16 +8,24 @@ import { AuthService } from './auth';
   standalone: true,
   imports: [
     RouterOutlet,
-    RouterLink,     // ✅ ADD THIS
+    RouterLink,
     CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.css']
 })
-export class App {
+export class App implements OnInit {
   title = signal('mean-stack-frontend');
 
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(
+    public auth: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    // 🔥 THIS is what prevents logout on navigation / refresh
+    this.auth.initAuth();
+  }
 
   logout() {
     this.auth.logout();

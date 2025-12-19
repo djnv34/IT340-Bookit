@@ -25,16 +25,4 @@ export class ManageComponent {
 
   constructor(private auth: AuthService, private router: Router) {}
 
-  signup() {
-    // For now, send only email + password to backend
-    this.auth.signup(this.email, this.password).subscribe({
-      next: () => {
-        this.message = "Account created! Redirecting to login...";
-        setTimeout(() => this.router.navigate(['/login']), 1000);
-      },
-      error: (err) => {
-        this.message = err.error?.message || "Signup failed";
-      }
-    });
-  }
 }

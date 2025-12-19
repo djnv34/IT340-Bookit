@@ -14,8 +14,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  signup(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup`, { email, password });
+  signup(
+    email: string,
+    password: string,
+    role: 'client' | 'provider'
+  ): Observable<any> {
+    return this.http.post(`${this.apiUrl}/signup`, {
+      email,
+      password,
+      role
+    });
   }
 
   login(email: string, password: string): Observable<any> {
@@ -45,6 +53,16 @@ export class AuthService {
         this.currentUser = res.user;
       })
     );
+  }
+
+  // 🔥 THIS FIXES "LOGGED OUT ON PAGE CHANGE"
+  initAuth() {
+    const token = this.getToken();
+    if (token) {
+      this.me().subscribe({
+        error: () => this.logout()
+      });
+    }
   }
 }
 
