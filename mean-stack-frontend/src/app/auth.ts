@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 
+type AuthStatus = 'loading' | 'authenticated' | 'guest';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,7 +12,9 @@ export class AuthService {
   private apiUrl = 'http://localhost:3000/api/auth';
   private isBrowser: boolean;
 
+  // 🔐 AUTH STATE (single source of truth)
   currentUser: any = null;
+  authStatus: AuthStatus = 'loading';
 
   constructor(
     private http: HttpClient,
@@ -40,7 +44,6 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
-        // 🔑 Handle ANY backend token naming
         const token =
           res.token ||
           res.accessToken ||
@@ -55,6 +58,9 @@ export class AuthService {
         if (this.isBrowser) {
           localStorage.setItem('token', token);
         }
+
+        // user will be set by /me()
+        this.authStatus = 'loading';
       })
     );
   }
@@ -66,7 +72,9 @@ export class AuthService {
     if (this.isBrowser) {
       localStorage.removeItem('token');
     }
+
     this.currentUser = null;
+    this.authStatus = 'guest';
   }
 
   // ------------------------
@@ -78,7 +86,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    return this.authStatus === 'authenticated';
   }
 
   // ------------------------
@@ -87,23 +95,37 @@ export class AuthService {
   me(): Observable<any> {
     return this.http.get(`${this.apiUrl}/me`).pipe(
       tap((res: any) => {
-        // backend usually returns { user: {...} }
         this.currentUser = res.user ?? res;
+        this.authStatus = 'authenticated';
       })
     );
   }
 
   // ------------------------
-  // INIT AUTH (on refresh)
+  // INIT AUTH (RUN ON APP START)
   // ------------------------
   initAuth() {
-    const token = this.getToken();
-
-    if (token) {
-      this.me().subscribe({
-        error: () => this.logout(),
-      });
+    if (!this.isBrowser) {
+      // SSR / hydration phase — do nothing
+      return;
     }
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      this.authStatus = 'guest';
+      return;
+    }
+
+    this.me().subscribe({
+      next: () => {
+        // already handled in tap
+      },
+      error: () => {
+        // token invalid / expired
+        this.logout();
+      }
+    });
   }
 }
 
